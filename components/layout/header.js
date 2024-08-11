@@ -3,12 +3,14 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="bg-white/10 backdrop-blur-md flex flex-row justify-between items-center py-2 border-b-[1px]">
-      <div className="header-left w-[50%] p-0 m-0">
-        <img src="/assets/img/logo1.png" className="pl-[100px]" />
+    <header className="bg-white/10 backdrop-blur-md flex flex-row justify-between items-center py-0 border-b-[1px]">
+      <div className="header-left w-[50%] py-2 px-0 m-0">
+        <Link href="/">
+          <img src="/assets/img/logo1.png" className="pl-[100px]" />
+        </Link>
       </div>
-      <div className="header-right w-[50%] p-0 m-0">
-        <ul className="font-normal text-white sm:text-base text-xs flex flex-row justify-between items-center pr-[100px] m-0">
+      <div className="header-right w-[50%] p-0 m-0 flex flex-row justify-between items-center">
+        <ul className="font-normal text-white sm:text-xs text-xs flex flex-row justify-between items-center h-full pr-8 m-0 w-[60%]">
           <li className="active">
             <Link href="/">Quran</Link>
           </li>
@@ -27,6 +29,8 @@ export default function Header() {
           <li>
             <Link href="/contact">Contact</Link>
           </li>
+        </ul>
+        <ul className="font-normal text-white sm:text-xs text-xs flex flex-row justify-between items-center pr-[100px] m-0 w-[40%]">
           <li className="text-white font-bold py-2 px-4 rounded bg-gradient-to-b from-[#ecae46] to-[#c1752f]">
             <Link href="/donate">Donate</Link>
           </li>

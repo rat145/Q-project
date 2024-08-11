@@ -21,6 +21,17 @@
 .active {
   position: relative;
   border-bottom: 4px solid #ecae46;
-  padding-top: 12px;
-  padding-bottom: 8px;
+  padding-top: 26px;
+  padding-bottom: 20px;
+}
+
+.search-button {
+  transition: background-color 0.5s ease-in-out;
+}
+.search-button:hover {
+  background-color: #c1752f;
+}
+
+#search-query:focus {
+  outline: none;
 }
