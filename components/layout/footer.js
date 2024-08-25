@@ -1,7 +1,7 @@
 export default function Footer({ callerPage }) {
   if (callerPage === "/") {
     return (
-      <footer className="text-white mx-0 p-0">
+      <footer className="text-white mx-0 p-0 absolute ">
         <div className="socials flex flex-row items-center mx-10 mb-3">
           <span className="text-sm font-light">Follow us</span>
           &nbsp;&nbsp;&nbsp;

@@ -6,7 +6,7 @@ export default function HeroSection() {
         <h1 className="text-lg font-bold">ILMULISLAM</h1>
       </div>
       <div className="title-subtitle-container">
-        <h2 className="text-5xl text-[#ecae46] font-extrabold leading-normal mb-4">
+        <h2 className="lg:text-5xl text-[#ecae46] font-extrabold lg:leading-normal lg:mb-4">
           Discover, Learn, and Connect with Islamic Knowledge
         </h2>
         <p className="text-lg font-normal leading-tight mb-5">

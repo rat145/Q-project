@@ -11,22 +11,22 @@ export default function Header() {
       </div>
       <div className="header-right w-[50%] p-0 m-0 flex flex-row justify-between items-center">
         <ul className="font-normal text-white sm:text-xs text-xs flex flex-row justify-between items-center h-full pr-8 m-0 w-[60%]">
-          <li className="active">
+          <li className="menu-list-item">
             <Link href="/">Quran</Link>
           </li>
-          <li>
+          <li className="menu-list-item">
             <Link href="/hadith">Hadith</Link>
           </li>
-          <li>
+          <li className="menu-list-item">
             <Link href="/courses">Courses</Link>
           </li>
-          <li>
+          <li className="menu-list-item">
             <Link href="/more">More</Link>
           </li>
-          <li>
+          <li className="menu-list-item">
             <Link href="/about">About</Link>
           </li>
-          <li>
+          <li className="menu-list-item">
             <Link href="/contact">Contact</Link>
           </li>
         </ul>

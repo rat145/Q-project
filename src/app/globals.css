@@ -18,7 +18,7 @@
   cursor: pointer;
 }
 
-.active {
+.menu-list-item:hover {
   position: relative;
   border-bottom: 4px solid #ecae46;
   padding-top: 26px;
