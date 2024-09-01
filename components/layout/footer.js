@@ -5,13 +5,13 @@ export default function Footer({ callerPage }) {
         <div className="socials flex flex-row items-center md:mx-10 mx-5 mb-3">
           <span className="text-sm font-light">Follow us</span>
           &nbsp;&nbsp;&nbsp;
-          <img src="/linkedin.svg" />
+          <img src="/linkedin.svg" className="lg:w-6 w-5" />
           &nbsp;&nbsp;
-          <img src="/instagram.svg" />
+          <img src="/instagram.svg" className="lg:w-6 w-5" />
           &nbsp;&nbsp;
-          <img src="/linkedin.svg" />
+          <img src="/linkedin.svg" className="lg:w-6 w-5" />
           &nbsp;&nbsp;
-          <img src="/instagram.svg" />
+          <img src="/instagram.svg" className="lg:w-6 w-5" />
         </div>
         <div className="divider md:px-10 px-5 py-0">
           <hr />
