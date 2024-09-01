@@ -8,7 +8,7 @@ import MobileHeader from "./mobile-header";
 export default function Header() {
   const { width, height } = useWindowSize();
 
-  if (width >= 1024) {
+  if (width > 1024) {
     return (
       <header className="bg-white/10 backdrop-blur-md flex flex-row justify-between items-center py-0 border-b-[1px]">
         <div className="header-left w-[50%] py-2 px-0 m-0">

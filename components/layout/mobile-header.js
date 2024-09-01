@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function MobileHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function MobileHeader() {
       </header>
       {/* Toggle menu */}
       <nav className={`bg-white mobile-menu ${isMenuOpen ? "open" : ""}`}>
-        <ul className="mobile-menu-list font-semibold text-[#B2B6B9] text-xs flex flex-row justify-between items-center m-0 h-12 md:px-60 px-32">
+        <ul className="mobile-menu-list font-semibold text-[#B2B6B9] text-xs flex flex-row justify-between items-center m-0 h-12 md:px-60 px-16">
           <li className="mobile-menu-list-item">
             <Link href="/">Quran</Link>
           </li>
