@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useWindowSize } from "../../src/hooks/useWindowSize";
 import MobileHeader from "./mobile-header";
 
-export default function Header() {
+export default function Header({ toggleModal }) {
   const { width, height } = useWindowSize();
 
   if (width > 1024) {
@@ -47,7 +47,7 @@ export default function Header() {
             <li>
               <img src="/search.svg" />
             </li>
-            <li>
+            <li className="cursor-pointer" onClick={toggleModal}>
               <img src="/profile.svg" />
             </li>
           </ul>
@@ -55,6 +55,6 @@ export default function Header() {
       </header>
     );
   } else {
-    return <MobileHeader />;
+    return <MobileHeader toggleModal={toggleModal} />;
   }
 }

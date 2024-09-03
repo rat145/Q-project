@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function MobileHeader() {
+export default function MobileHeader({ toggleModal }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -22,7 +22,7 @@ export default function MobileHeader() {
             <li className="pr-5">
               <img src="/search.svg" />
             </li>
-            <li className="pr-5">
+            <li className="pr-5" onClick={toggleModal}>
               <img src="/profile.svg" />
             </li>
           </ul>
