@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { auth, provider } from "./config";
-import { signInWithPopup } from "firebase/auth";
+import {
+  signInWithPopup,
+  FacebookAuthProvider,
+  sendSignInLinkToEmail,
+} from "firebase/auth";
 
 export default function Modal({ toggleModal }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [emailOnly, setEmailOnly] = useState("");
+  const [message, setMessage] = useState("");
 
+  // Google
   const handleGoogleClick = () => {
     signInWithPopup(auth, provider).then((data) => {
       setName(data.user.displayName);
@@ -20,6 +27,45 @@ export default function Modal({ toggleModal }) {
     window.location.reload();
   };
 
+  // Facebook
+  const handleFacebookClick = () => {
+    const this_provider = new FacebookAuthProvider();
+    signInWithPopup(auth, this_provider).then((data) => {
+      setName(data.user.displayName);
+      setEmail(data.user.email);
+      localStorage.setItem("email", data.user.email);
+    });
+  };
+
+  // Email Only sign in
+  const handleEmailChange = (e) => {
+    setEmailOnly(e.target.value);
+    console.log(emailOnly);
+  };
+
+  const handleSendEmailLink = async (e) => {
+    e.preventDefault();
+    const actionCodeSettings = {
+      // URL you want to redirect back to after the sign-in is complete (this should be your site).
+      url: "http://localhost:3000/finishSignUp", // or your deployment domain
+      handleCodeInApp: true, // This must be true for email link sign-in.
+    };
+    try {
+      // Send sign-in email link
+      await sendSignInLinkToEmail(auth, emailOnly, actionCodeSettings);
+      // Save the user's email in localStorage to use when they return to the app
+      window.localStorage.setItem("emailForSignIn", emailOnly);
+      // Update the message to notify the user
+      setMessage(
+        `Click the link we sent to ${emailOnly} to sign in. If you do not see the email in a few minutes, check your Spam or Junk mail folder.`
+      );
+    } catch (error) {
+      setMessage("Error sending email. Please try again.");
+      console.error(error);
+    }
+  };
+
+  //
   useEffect(() => {
     setEmail(localStorage.getItem("email"));
   });
@@ -76,6 +122,7 @@ export default function Modal({ toggleModal }) {
                 </Link>
                 <Link
                   href={"#"}
+                  onClick={handleFacebookClick}
                   className="border-2 py-3 flex-grow flex justify-center items-center rounded"
                 >
                   <li>
@@ -106,8 +153,14 @@ export default function Modal({ toggleModal }) {
                 <input
                   type="email"
                   className="border-2 rounded px-2 py-3 mb-5 outline-none text-sm text-slate-700"
+                  value={emailOnly}
+                  onChange={handleEmailChange}
                 />
-                <button className="bg-gradient-to-b from-[#ecae46] to-[#c1752f] text-white py-3 rounded">
+                <button
+                  type="submit"
+                  onClick={handleSendEmailLink}
+                  className="bg-gradient-to-b from-[#ecae46] to-[#c1752f] text-white py-3 rounded"
+                >
                   Continue
                 </button>
                 <p className="text-[10px] text-slate-500 text-center">
