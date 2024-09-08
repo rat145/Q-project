@@ -5,13 +5,16 @@ import {
   signInWithPopup,
   FacebookAuthProvider,
   sendSignInLinkToEmail,
+  isSignInWithEmailLink,
+  signInWithEmailLink,
 } from "firebase/auth";
 
 export default function Modal({ toggleModal }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [emailOnly, setEmailOnly] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Google
   const handleGoogleClick = () => {
@@ -40,14 +43,13 @@ export default function Modal({ toggleModal }) {
   // Email Only sign in
   const handleEmailChange = (e) => {
     setEmailOnly(e.target.value);
-    console.log(emailOnly);
   };
 
   const handleSendEmailLink = async (e) => {
     e.preventDefault();
     const actionCodeSettings = {
       // URL you want to redirect back to after the sign-in is complete (this should be your site).
-      url: "http://localhost:3000/finishSignUp", // or your deployment domain
+      url: "http://localhost:3000/", // or your deployment domain
       handleCodeInApp: true, // This must be true for email link sign-in.
     };
     try {
@@ -57,7 +59,10 @@ export default function Modal({ toggleModal }) {
       window.localStorage.setItem("emailForSignIn", emailOnly);
       // Update the message to notify the user
       setMessage(
-        `Click the link we sent to ${emailOnly} to sign in. If you do not see the email in a few minutes, check your Spam or Junk mail folder.`
+        <>
+          Click the link we sent to <b>{emailOnly}</b> to sign in. If you do not
+          see the email in a few minutes, check your Spam or Junk mail folder.
+        </>
       );
     } catch (error) {
       setMessage("Error sending email. Please try again.");
@@ -67,8 +72,38 @@ export default function Modal({ toggleModal }) {
 
   //
   useEffect(() => {
-    setEmail(localStorage.getItem("email"));
-  });
+    // Check if the user is returning from email link
+    if (isSignInWithEmailLink(auth, window.location.href)) {
+      let emailForSignIn = window.localStorage.getItem("emailForSignIn");
+      if (!emailForSignIn) {
+        // Prompt the user to provide their email if it was not stored
+        emailForSignIn = window.prompt(
+          "Please provide your email for confirmation"
+        );
+      }
+
+      signInWithEmailLink(emailForSignIn, window.location.href)
+        .then((result) => {
+          // Clear the email from storage
+          window.localStorage.removeItem("emailForSignIn");
+
+          // Set logged in state and save email to localStorage
+          setEmail(result.user.email);
+          setIsLoggedIn(true);
+          window.localStorage.setItem("email", result.user.email);
+        })
+        .catch((error) => {
+          console.error("Error signing in with email link", error);
+        });
+    }
+
+    // Check if the user is already logged in
+    const storedEmail = window.localStorage.getItem("email");
+    if (storedEmail) {
+      setEmail(storedEmail);
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
@@ -94,6 +129,22 @@ export default function Modal({ toggleModal }) {
               onClick={logout}
             >
               Logout
+            </button>
+          </>
+        ) : message ? (
+          <>
+            <div className="row1 flex justify-between md:mx-14 mx-8">
+              <span className="bottomleft-cap-line relative text-[#3E094B] text-lg font-bold">
+                Check your email
+              </span>
+              <img src="assets/img/logo1.png" />
+            </div>
+            <p className="text-sm text-slate-500 md:mx-14 mx-8">{message}</p>
+            <button
+              className="bg-gradient-to-b from-[#ecae46] to-[#c1752f] text-white py-3 rounded md:mx-14 mx-8 w-[20%]"
+              onClick={toggleModal}
+            >
+              OK
             </button>
           </>
         ) : (
