@@ -1,6 +1,6 @@
 export default function HeroSection() {
   return (
-    <main className="text-white md:pl-200px lg:w-[50%] w-[90%] lg:ml-[100px] ml-[20px] h-[80%] flex flex-col sm:justify-center justify-start mt-5">
+    <main className="text-white md:pl-200px lg:w-[50%] w-[90%] lg:ml-[100px] ml-[20px] h-[80%] flex flex-col sm:justify-center justify-start mt-5 sm:mt-0">
       <div className="icon-box flex flex-row items-center mb-2">
         <img src="/assets/img/logo1.png" /> &nbsp;&nbsp;&nbsp;&nbsp;
         <h1 className="lg:text-lg md:text-base font-bold">ILMULISLAM</h1>
