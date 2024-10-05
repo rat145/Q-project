@@ -1,15 +1,15 @@
 export default function HeroSection() {
   return (
-    <main className="text-white md:pl-200px lg:w-[50%] w-[90%] lg:ml-[100px] ml-[20px] h-[80%] flex flex-col justify-center">
+    <main className="text-white md:pl-200px lg:w-[50%] w-[90%] lg:ml-[100px] ml-[20px] h-[80%] flex flex-col sm:justify-center justify-start mt-5">
       <div className="icon-box flex flex-row items-center mb-2">
         <img src="/assets/img/logo1.png" /> &nbsp;&nbsp;&nbsp;&nbsp;
         <h1 className="lg:text-lg md:text-base font-bold">ILMULISLAM</h1>
       </div>
       <div className="title-subtitle-container">
-        <h2 className="lg:text-5xl md:text-4xl text-2xl text-[#ecae46] font-extrabold md:leading-normal leading-snug mb-4">
+        <h2 className="lg:text-5xl md:text-4xl text-2xl text-[#ecae46] font-extrabold md:leading-normal sm:leading-snug leading-tight mb-4">
           Discover, Learn, and Connect with Islamic Knowledge
         </h2>
-        <p className="lg:text-lg text-base font-normal leading-tight mb-5">
+        <p className="lg:text-lg sm:text-base text-sm font-normal leading-tight mb-5">
           Join a vibrant community of Muslims exploring credible sources of
           Quran and Hadith, Islamic history, and free courses. Ask questions,
           get expert answers, track Salah times, find the Qibla, calculate
@@ -35,17 +35,17 @@ export default function HeroSection() {
         <span className="font-semibold lg:text-sm text-xs text-slate-400 md:mb-0 mb-2">
           Trending:
         </span>
-        <ul className="font-semibold lg:text-sm md:text-xs text-sm flex flex-row md:w-[80%] w-[100%] md:justify-evenly">
-          <li className="trending-list-item border-2 rounded-3xl lg:px-4 md:px-3 md:py-2 p-1 md:mr-0 mr-2 text-center">
+        <ul className="font-semibold lg:text-sm md:text-xs text-[10px] flex flex-row md:w-[80%] w-[100%] md:justify-evenly">
+          <li className="trending-list-item sm:border-2 border rounded-3xl lg:px-4 sm:px-3 md:py-2 p-1 md:mr-0 mr-2 text-center">
             Sahih Bukhari
           </li>
-          <li className="trending-list-item border-2 rounded-3xl lg:px-4 md:px-3 md:py-2 p-1 md:mr-0 mr-2 text-center">
+          <li className="trending-list-item sm:border-2 border rounded-3xl lg:px-4 md:px-3 md:py-2 p-1 md:mr-0 mr-2 text-center">
             Sureh Baqarah
           </li>
-          <li className="trending-list-item border-2 rounded-3xl lg:px-4 md:px-3 md:py-2 p-1 md:mr-0 mr-2 text-center">
+          <li className="trending-list-item sm:border-2 border rounded-3xl lg:px-4 md:px-3 md:py-2 p-1 md:mr-0 mr-2 text-center">
             Salah tracker
           </li>
-          <li className="trending-list-item border-2 rounded-3xl lg:px-4 md:px-3 md:py-2 p-1 md:mr-0 mr-2 text-center">
+          <li className="trending-list-item sm:border-2 border rounded-3xl lg:px-4 md:px-3 md:py-2 p-1 md:mr-0 mr-2 text-center">
             Arabic course
           </li>
         </ul>
