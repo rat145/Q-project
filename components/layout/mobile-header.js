@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function MobileHeader({ toggleModal }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,8 +27,27 @@ export default function MobileHeader({ toggleModal }) {
           </ul>
         </div>
       </header>
-      {/* Toggle menu */}
-      <nav className={`bg-white mobile-menu ${isMenuOpen ? "open" : ""}`}>
+      {/* Hamburger Menu */}
+      <nav
+        className={`ham-menu-container ${
+          isMenuOpen ? "open" : ""
+        } w-[40%] bg-white absolute left-[4%] sm:left-[2%] rounded-lg shadow-slate-700`}
+      >
+        <ul className="ham-menu-list font-semibold text-[#B2B6B9] text-sm">
+          <li className="ham-menu-list-item hover:bg-slate-200 hover:text-[#4b5563] px-5 py-4">
+            <Link href="/">Salah Tracker</Link>
+          </li>
+          <li className="ham-menu-list-item hover:bg-slate-200 hover:text-[#4b5563] px-5 py-4">
+            <Link href="/">Qiblah Tracker</Link>
+          </li>
+        </ul>
+      </nav>
+      {/* Menu */}
+      <nav
+        className={`bg-white mobile-menu open ${
+          isMenuOpen ? "bg-gray-300" : ""
+        }`}
+      >
         <ul className="mobile-menu-list font-semibold text-[#B2B6B9] text-xs flex flex-row justify-between items-center m-0 h-12 md:px-60 px-10">
           <li className="mobile-menu-list-item">
             <Link href="/">Quran</Link>
@@ -39,9 +57,6 @@ export default function MobileHeader({ toggleModal }) {
           </li>
           <li className="mobile-menu-list-item">
             <Link href="/">Courses</Link>
-          </li>
-          <li className="mobile-menu-list-item">
-            <Link href="/">More</Link>
           </li>
           <li className="mobile-menu-list-item">
             <Link href="/">About</Link>

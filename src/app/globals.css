@@ -56,6 +56,16 @@
   max-height: 48px; /* Set this to the maximum height your menu might need */
 }
 
+.ham-menu-container {
+  overflow: hidden;
+  display: none;
+  transition: display 0.3s ease-out;
+}
+
+.ham-menu-container.open {
+  display: block;
+}
+
 /* Login Modal */
 .topleft-cap-line::before {
   content: "";

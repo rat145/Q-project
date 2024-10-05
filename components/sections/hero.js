@@ -9,7 +9,7 @@ export default function HeroSection() {
         <h2 className="lg:text-5xl md:text-4xl text-2xl text-[#ecae46] font-extrabold md:leading-normal leading-snug mb-4">
           Discover, Learn, and Connect with Islamic Knowledge
         </h2>
-        <p className="lg:text-lg md:text-base text-[12px] font-normal leading-tight mb-5">
+        <p className="lg:text-lg text-base font-normal leading-tight mb-5">
           Join a vibrant community of Muslims exploring credible sources of
           Quran and Hadith, Islamic history, and free courses. Ask questions,
           get expert answers, track Salah times, find the Qibla, calculate
@@ -26,7 +26,7 @@ export default function HeroSection() {
         />
         <button
           type="submit"
-          className="bg-[#ecae46] rounded-r font-bold lg:text-lg text-base px-[50px] search-button"
+          className="bg-[#ecae46] rounded-r font-bold lg:text-lg text-base sm:px-[50px] px-[25px] search-button"
         >
           Search
         </button>
@@ -35,7 +35,7 @@ export default function HeroSection() {
         <span className="font-semibold lg:text-sm text-xs text-slate-400 md:mb-0 mb-2">
           Trending:
         </span>
-        <ul className="font-semibold lg:text-sm md:text-xs text-[8px] flex flex-row md:w-[80%] w-[100%] md:justify-evenly">
+        <ul className="font-semibold lg:text-sm md:text-xs text-sm flex flex-row md:w-[80%] w-[100%] md:justify-evenly">
           <li className="trending-list-item border-2 rounded-3xl lg:px-4 md:px-3 md:py-2 p-1 md:mr-0 mr-2 text-center">
             Sahih Bukhari
           </li>
