@@ -23,11 +23,7 @@ export default function Header({ toggleModal }) {
         </div>
         <div className="header-right w-[50%] p-0 m-0 flex flex-row justify-between items-center">
           <ul className="menu-list font-normal text-white sm:text-xs text-xs flex flex-row justify-between items-center h-full pr-8 m-0 w-[60%]">
-            <li
-              className={`menu-list-item ${
-                pathname == "/" && "menu-list-item-active"
-              }`}
-            >
+            <li className={`menu-list-item`}>
               <Link href="/">Quran</Link>
             </li>
             <li className="menu-list-item">
