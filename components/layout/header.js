@@ -4,9 +4,11 @@ import React from "react";
 import Link from "next/link";
 import { useWindowSize } from "../../src/hooks/useWindowSize";
 import MobileHeader from "./mobile-header";
+import { usePathname } from "next/navigation";
 
 export default function Header({ toggleModal }) {
   const { width, height } = useWindowSize();
+  const pathname = usePathname();
 
   if (width > 1024) {
     return (
@@ -21,7 +23,11 @@ export default function Header({ toggleModal }) {
         </div>
         <div className="header-right w-[50%] p-0 m-0 flex flex-row justify-between items-center">
           <ul className="menu-list font-normal text-white sm:text-xs text-xs flex flex-row justify-between items-center h-full pr-8 m-0 w-[60%]">
-            <li className="menu-list-item">
+            <li
+              className={`menu-list-item ${
+                pathname == "/" && "menu-list-item-active"
+              }`}
+            >
               <Link href="/">Quran</Link>
             </li>
             <li className="menu-list-item">
@@ -30,11 +36,12 @@ export default function Header({ toggleModal }) {
             <li className="menu-list-item">
               <Link href="/">Courses</Link>
             </li>
-            <li className="menu-list-item">
-              <Link href="/">More</Link>
-            </li>
-            <li className="menu-list-item">
-              <Link href="/">About</Link>
+            <li
+              className={`menu-list-item ${
+                pathname == "/about" && "menu-list-item-active"
+              }`}
+            >
+              <Link href="/about">About</Link>
             </li>
             <li className="menu-list-item">
               <Link href="/">Contact</Link>

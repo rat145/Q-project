@@ -1,5 +1,5 @@
 export default function Footer({ callerPage }) {
-  if (callerPage === "/") {
+  if (callerPage === "/" || callerPage === "/about") {
     return (
       <footer className="text-white mx-0 p-0 absolute bottom-3 lg:w-full">
         <div className="socials flex flex-row items-center md:mx-10 mx-5 mb-3">

@@ -25,6 +25,13 @@
   padding-bottom: 20px;
 }
 
+.menu-list-item-active {
+  position: relative;
+  border-bottom: 4px solid #ecae46;
+  padding-top: 26px;
+  padding-bottom: 20px;
+}
+
 .search-button {
   transition: background-color 0.5s ease-in-out;
 }
@@ -44,6 +51,16 @@
   padding-bottom: 15px;
   color: #4b5563;
   font-weight: 700;
+}
+
+.mobile-menu-list-item-active {
+  position: relative;
+  border-bottom: 4px solid #ecae46;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #4b5563;
+  font-weight: 700;
+  z-index: 0;
 }
 
 .mobile-menu {
@@ -93,4 +110,13 @@
   background-color: #f38e1c;
   transform: translateY(-50%);
   margin-right: 10px;
+}
+
+/************ About Page ***************/
+.about-background {
+  background-image: url("/assets/img/about-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left;
+  background-blend-mode: darken !important;
 }

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function MobileHeader({ toggleModal }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -29,7 +31,7 @@ export default function MobileHeader({ toggleModal }) {
       </header>
       {/* Hamburger Menu */}
       <nav
-        className={`ham-menu-container ${
+        className={`ham-menu-container z-10 ${
           isMenuOpen ? "open" : ""
         } w-[40%] bg-white absolute left-[4%] sm:left-[2%] rounded-lg shadow-slate-700`}
       >
@@ -49,7 +51,11 @@ export default function MobileHeader({ toggleModal }) {
         }`}
       >
         <ul className="mobile-menu-list font-semibold text-[#B2B6B9] text-xs flex flex-row justify-between items-center m-0 h-12 md:px-60 px-10">
-          <li className="mobile-menu-list-item">
+          <li
+            className={`mobile-menu-list-item ${
+              pathname == "/" && "mobile-menu-list-item-active"
+            }`}
+          >
             <Link href="/">Quran</Link>
           </li>
           <li className="mobile-menu-list-item">
@@ -58,8 +64,12 @@ export default function MobileHeader({ toggleModal }) {
           <li className="mobile-menu-list-item">
             <Link href="/">Courses</Link>
           </li>
-          <li className="mobile-menu-list-item">
-            <Link href="/">About</Link>
+          <li
+            className={`mobile-menu-list-item ${
+              pathname == "/about" && "mobile-menu-list-item-active"
+            }`}
+          >
+            <Link href="/about">About</Link>
           </li>
           <li className="mobile-menu-list-item">
             <Link href="/">Contact</Link>
