@@ -11,10 +11,10 @@ export default function About() {
   };
 
   return (
-    <section className="about-background p-0 m-0 h-[100vh]">
+    <section className="about-background p-0 m-0 h-screen">
       <Header toggleModal={toggleModal} />
       {/* About Content Start */}
-      <div className="lg:ml-[100px] ml-5 lg:mt-5 mt-3 xl:w-3/6 lg:w-4/6 md:w-4/5 w-11/12 relative sm:max-h-none max-h-[67%] md:overflow-auto overflow-y-scroll flex flex-col xl:gap-3 md:gap-2 gap-1">
+      <div className="lg:ml-[100px] ml-5 lg:mt-5 mt-3 xl:w-3/6 lg:w-4/6 md:w-4/5 w-11/12 relative sm:max-h-none max-h-[70%] md:overflow-auto overflow-y-scroll flex flex-col xl:gap-3 md:gap-2 gap-1">
         <h3 className="lg:text-[35px] md:text-[25px] text-[20px] font-extrabold bg-gradient-to-r from-[#ecae46] to-[#C1752F] bg-clip-text text-transparent">
           Our Story
         </h3>

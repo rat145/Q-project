@@ -39,8 +39,12 @@ export default function Header({ toggleModal }) {
             >
               <Link href="/about">About</Link>
             </li>
-            <li className="menu-list-item">
-              <Link href="/">Contact</Link>
+            <li
+              className={`menu-list-item ${
+                pathname == "/contact" && "menu-list-item-active"
+              }`}
+            >
+              <Link href="/contact">Contact</Link>
             </li>
           </ul>
           <ul className="font-normal text-white text-xs flex flex-row justify-between items-center lg:pr-[100px] m-0 w-[40%]">

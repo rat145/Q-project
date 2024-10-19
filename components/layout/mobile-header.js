@@ -67,8 +67,12 @@ export default function MobileHeader({ toggleModal }) {
           >
             <Link href="/about">About</Link>
           </li>
-          <li className="mobile-menu-list-item">
-            <Link href="/">Contact</Link>
+          <li
+            className={`mobile-menu-list-item ${
+              pathname == "/contact" && "mobile-menu-list-item-active"
+            }`}
+          >
+            <Link href="/contact">Contact</Link>
           </li>
         </ul>
       </nav>

@@ -1,5 +1,5 @@
 export default function Footer({ callerPage }) {
-  if (callerPage === "/" || callerPage === "/about") {
+  if (callerPage === "/") {
     return (
       <footer className="text-white mx-0 p-0 absolute bottom-3 lg:w-full">
         <div className="socials flex flex-row items-center md:mx-10 mx-5 mb-3">
@@ -13,6 +13,21 @@ export default function Footer({ callerPage }) {
           &nbsp;&nbsp;
           <img src="/instagram.svg" className="lg:w-6 w-5" />
         </div>
+        <div className="divider md:px-10 px-5 py-0">
+          <hr />
+        </div>
+        <div className="md:px-40 px-5 pt-3 text-center">
+          <p className="lg:text-xs text-[10px] font-light">
+            &copy; Yaqeen Institute for Islamic Research 2024. We are a
+            501&#40;C&#41;&#40;3&#41; organization. All donations are tax
+            deductible. Our EIN is
+          </p>
+        </div>
+      </footer>
+    );
+  } else if (callerPage === "/about" || callerPage === "/contact") {
+    return (
+      <footer className="text-white mx-0 p-0 absolute bottom-3 lg:w-full">
         <div className="divider md:px-10 px-5 py-0">
           <hr />
         </div>
