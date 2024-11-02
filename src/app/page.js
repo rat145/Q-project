@@ -1,11 +1,11 @@
 "use client";
 
-import Header from "../../components/layout/header";
 import Footer from "../../components/layout/footer";
 import HeroSection from "../../components/sections/hero";
 import React, { useState } from "react";
 import "./globals.css";
 import Modal from "../../components/Modal";
+import Header from "../../components/layout/header";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);

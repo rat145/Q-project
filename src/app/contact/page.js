@@ -19,7 +19,7 @@ export default function Contact() {
           Contact us
         </h3>
         <form className="text-white flex flex-col lg:w-2/6 md:w-full lg:text-base text-sm mt-4">
-          <label for="email">
+          <label htmlFor="email">
             Email<span className="text-red-700">*</span>
           </label>
           <input
@@ -28,7 +28,7 @@ export default function Contact() {
             required
             className="text-gray-800 p-2 rounded mb-4"
           />
-          <label for="fname">
+          <label htmlFor="fname">
             First Name<span className="text-red-700">*</span>
           </label>
           <input
@@ -37,7 +37,7 @@ export default function Contact() {
             required
             className="text-gray-800 p-2 rounded mb-4"
           />
-          <label for="lname">
+          <label htmlFor="lname">
             Last Name<span className="text-red-700">*</span>
           </label>
           <input
@@ -46,7 +46,7 @@ export default function Contact() {
             required
             className="text-gray-800 p-2 rounded mb-4"
           />
-          <label for="phone">
+          <label htmlFor="phone">
             Mobile Number<span className="text-red-700">*</span>
           </label>
           <input
@@ -55,7 +55,7 @@ export default function Contact() {
             required
             className="text-gray-800 p-2 rounded mb-4"
           />
-          <label for="message">
+          <label htmlFor="message">
             Message<span className="text-red-700">*</span>
           </label>
           <textarea
@@ -71,6 +71,15 @@ export default function Contact() {
           >
             Submit
           </button>
+          <p className="lg:mt-5 sm:mt-3 mt-1">
+            Reach out to us at&nbsp;
+            <a
+              href="mailto:info.ilmulislam@gmail.com"
+              className="text-[#ecae46] hover:text-[#c1752f] transition-all"
+            >
+              info.ilmulislam@gmail.com
+            </a>
+          </p>
         </form>
       </div>
       {/* Contact us content End */}

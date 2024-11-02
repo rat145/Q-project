@@ -26,7 +26,7 @@ export default function HeroSection() {
         />
         <button
           type="submit"
-          className="bg-[#ecae46] rounded-r font-bold lg:text-lg text-base sm:px-[50px] px-[25px] search-button"
+          className="bg-[#ecae46] rounded-r font-bold lg:text-lg text-base sm:px-[50px] px-[25px] active:bg-[#c1752f] hover:bg-[#c1752f] transition-all"
         >
           Search
         </button>

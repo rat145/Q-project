@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function MobileHeader({ toggleModal }) {
+export default function MobileHeader({ toggleModal, isScrollable }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -11,7 +11,11 @@ export default function MobileHeader({ toggleModal }) {
   };
 
   return (
-    <div className="mobile-header-parent-container">
+    <div
+      className={`mobile-header-parent-container ${
+        isScrollable && "absolute w-full"
+      }`}
+    >
       {/* Glass header */}
       <header className="bg-white/10 backdrop-blur-md flex flex-row justify-between items-center py-0 border-b-[1px]">
         <div className="mobile-header-container w-[100%] py-1 px-0 m-0 flex justify-between items-center">
