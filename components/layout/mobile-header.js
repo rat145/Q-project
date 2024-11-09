@@ -55,8 +55,12 @@ export default function MobileHeader({ toggleModal, isScrollable }) {
         }`}
       >
         <ul className="mobile-menu-list font-semibold text-[#B2B6B9] text-xs flex flex-row justify-between items-center m-0 h-12 md:px-60 px-10">
-          <li className={`mobile-menu-list-item`}>
-            <Link href="/">Quran</Link>
+          <li
+            className={`mobile-menu-list-item ${
+              pathname == "/quran" && "mobile-menu-list-item-active"
+            }`}
+          >
+            <Link href="/quran">Quran</Link>
           </li>
           <li className="mobile-menu-list-item">
             <Link href="/">Hadith</Link>

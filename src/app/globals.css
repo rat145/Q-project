@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 ::selection {
-  background-color: #c1752f;
+  background-color: #ecae46;
   color: #fff;
 }
 
@@ -142,5 +142,17 @@ select:focus {
   background-image: url("/assets/img/q-banner.webp");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: left;
+  background-position: top;
+}
+
+@media (max-width: 768px) {
+  .banner-img {
+    background-size: cover;
+  }
+}
+
+@media (max-width: 1024px) {
+  .banner-img {
+    background-size: cover;
+  }
 }
