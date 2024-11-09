@@ -156,3 +156,19 @@ select:focus {
     background-size: cover;
   }
 }
+
+/* Index cards section */
+.qIndexCard {
+  background: linear-gradient(to bottom right, #fff, #fff);
+  transition: all 0.5s ease-in-out;
+}
+
+.qIndexCard:hover {
+  background: linear-gradient(to bottom right, #ecae46, #c1752f);
+}
+.qIndexCard:hover .qIndexNumBox {
+  background-color: #3e094c;
+}
+.qIndexCard:hover .qIndexSubtitle {
+  color: #fff;
+}
