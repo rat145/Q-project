@@ -40,5 +40,20 @@ export default function Footer({ callerPage }) {
         </div>
       </footer>
     );
+  } else if (callerPage === "/quran") {
+    return (
+      <footer className="text-black mx-0 p-0 lg:mb-5 sm:mb-3 mb-2 lg:w-full">
+        <div className="divider md:px-10 px-5 py-0">
+          <hr className="border-[#646464]" />
+        </div>
+        <div className="md:px-40 px-5 pt-3 text-center">
+          <p className="lg:text-xs sm:text-[10px] text-[8px] font-normal">
+            &copy; Yaqeen Institute for Islamic Research 2024. We are a
+            501&#40;C&#41;&#40;3&#41; organization. All donations are tax
+            deductible. Our EIN is
+          </p>
+        </div>
+      </footer>
+    );
   }
 }

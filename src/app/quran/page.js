@@ -82,6 +82,8 @@ export default function Quran() {
       </div>
       {/* Index */}
       <QuranIndex />
+      {/* Footer */}
+      <Footer callerPage={"/quran"} />
       {/* Login Modal */}
       {showModal && <Modal toggleModal={toggleModal} />}
     </section>

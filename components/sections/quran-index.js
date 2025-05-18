@@ -1,6 +1,7 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import SurahCard from "../SurahCard";
+import JuzIndex from "./juz-index";
 
 const baseURL = "https://api.alquran.cloud/v1";
 
@@ -26,22 +27,7 @@ export default function QuranIndex() {
         setData("Error fetching data. Try again after some time.");
         setIsLoading(false);
       });
-  }, []);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(baseURL + "/juz/1")
-  //     .then((response) => {
-  //       if (response.data.status === "OK") {
-  //         setData(response.data.data);
-  //         setIsLoading(false);
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       setData("Error fetching data. Try again after some time.");
-  //       setIsLoading(false);
-  //     });
-  // }, [indexTabActive])
+  }, [indexTabActive]);
 
   return (
     <div className="relative lg:mx-[100px] mx-5 lg:mt-0 mt-4">
@@ -76,12 +62,13 @@ export default function QuranIndex() {
       {isLoading && <div className="absolute loader"></div>}
       {/* Loading State END */}
       {/* TAB CONTENT START */}
-      <div className="grid grid-cols-12 gap-5 my-7 font-bold relative">
+      <div className="grid grid-cols-12 gap-5 mt-7 mb-20 font-bold relative">
         {indexTabActive === 1 ? (
           // ---SURAH---
           Array.isArray(data) && data.length > 0 ? (
-            data.map((element, index) => (
+            data.map((element) => (
               <SurahCard
+                key={element.number}
                 number={element.number}
                 englishName={element.englishName}
                 englishNameTranslation={element.englishNameTranslation}
@@ -94,23 +81,7 @@ export default function QuranIndex() {
           )
         ) : (
           // ---JUZ---
-          <div className="lg:col-span-4 sm:col-span-6 col-span-12 flex flex-col gap-5">
-            <div className="lg:text-[16px] sm:text-[14px] text-[11px] font-normal flex justify-between">
-              <h4>Juz 1</h4>
-              <p className="underline">
-                <a href="#">Read Juz</a>
-              </p>
-            </div>
-            <div className="flex flex-col">
-              <SurahCard
-                number={1}
-                englishName={"English Name"}
-                englishNameTranslation={"English Name Translation"}
-                name={"Arabic title"}
-                numberOfAyahs={10}
-              />
-            </div>
-          </div>
+          <JuzIndex data={data} />
         )}
       </div>
       {/* TAB CONTENT END */}
