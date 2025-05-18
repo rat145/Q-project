@@ -2,7 +2,7 @@ import { useState, useEffect, use } from "react";
 import axios from "axios";
 import SurahCard from "../SurahCard";
 
-const baseURL = "http://api.alquran.cloud/v1";
+const baseURL = "https://api.alquran.cloud/v1";
 
 export default function QuranIndex() {
   const [data, setData] = useState(null);
