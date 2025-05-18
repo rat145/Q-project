@@ -1,14 +1,50 @@
-import { useState } from "react";
-import SurahData from "../../content/surah.json";
+import { useState, useEffect, use } from "react";
+import axios from "axios";
+import SurahCard from "../SurahCard";
+
+const baseURL = "http://api.alquran.cloud/v1";
 
 export default function QuranIndex() {
+  const [data, setData] = useState(null);
+  const [juzData, setJuzData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [indexTabActive, setIndexTabActive] = useState(1);
   const toggleIndexTabActive = (i) => {
     setIndexTabActive(i);
   };
 
+  useEffect(() => {
+    axios
+      .get(baseURL + "/surah")
+      .then((response) => {
+        if (response.data.status === "OK") {
+          setData(response.data.data);
+          setIsLoading(false);
+        }
+      })
+      .catch((e) => {
+        setData("Error fetching data. Try again after some time.");
+        setIsLoading(false);
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(baseURL + "/juz/1")
+  //     .then((response) => {
+  //       if (response.data.status === "OK") {
+  //         setData(response.data.data);
+  //         setIsLoading(false);
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       setData("Error fetching data. Try again after some time.");
+  //       setIsLoading(false);
+  //     });
+  // }, [indexTabActive])
+
   return (
-    <div className="lg:mx-[100px] mx-5 lg:mt-0 mt-4">
+    <div className="relative lg:mx-[100px] mx-5 lg:mt-0 mt-4">
       {/* TABS */}
       <div className="indexTabs">
         <ul className="list-none flex text-[#272727] leading-7 sm:text-base text-sm font-normal">
@@ -35,43 +71,48 @@ export default function QuranIndex() {
         </ul>
         <hr className="bg-[#EBEEF0] h-[1.2px] border-none" />
       </div>
+      {/* TABS END */}
+      {/* Loading State START */}
+      {isLoading && <div className="absolute loader"></div>}
+      {/* Loading State END */}
       {/* TAB CONTENT START */}
-      {/* Parent - Grid container START */}
-      <div className="grid grid-cols-12 gap-5 mt-7 font-bold">
-        {/* Child element - Card START */}
-        {SurahData.map((element, index) => (
-          <div
-            className="qIndexCard flex justify-start items-center lg:col-span-4 sm:col-span-6 col-span-12 rounded border border-[#ECAE46] sm:py-5 py-4 pl-5 sm:pr-10 pr-5 cursor-pointer"
-            key={index}
-          >
-            <div className="flex flex-col w-[20%]">
-              <div className="qIndexNumBox border border-[#ECAE46] h-[40px] w-[40px] rotate-45 flex justify-center items-center rounded">
-                <p className="qIndexSubtitle text-[#272727] rotate-[-45deg] md:text-sm text-xs">
-                  {element.surahNum}
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col w-[60%] text-wrap">
-              <h4 className="text-[#272727] sm:text-base text-sm">
-                {element.surahTitle}
-              </h4>
-              <p className="qIndexSubtitle text-[#666666] sm:text-xs text-[10px]">
-                {element.surahSubtitle}
+      <div className="grid grid-cols-12 gap-5 my-7 font-bold relative">
+        {indexTabActive === 1 ? (
+          // ---SURAH---
+          Array.isArray(data) && data.length > 0 ? (
+            data.map((element, index) => (
+              <SurahCard
+                number={element.number}
+                englishName={element.englishName}
+                englishNameTranslation={element.englishNameTranslation}
+                name={element.name}
+                numberOfAyahs={element.numberOfAyahs}
+              />
+            ))
+          ) : (
+            <p className="text-sm font-normal absolute">{data}</p> // error msg
+          )
+        ) : (
+          // ---JUZ---
+          <div className="lg:col-span-4 sm:col-span-6 col-span-12 flex flex-col gap-5">
+            <div className="lg:text-[16px] sm:text-[14px] text-[11px] font-normal flex justify-between">
+              <h4>Juz 1</h4>
+              <p className="underline">
+                <a href="#">Read Juz</a>
               </p>
             </div>
-            <div className="flex flex-col w-[20%] text-wrap">
-              <p className="text-[#272727] sm:text-base text-sm text-right font-normal">
-                {element.surahArabicTitle}
-              </p>
-              <p className="qIndexSubtitle text-[#666666] sm:text-xs text-[10px] text-right">
-                {element.surahAyahs} Ayahs
-              </p>
+            <div className="flex flex-col">
+              <SurahCard
+                number={1}
+                englishName={"English Name"}
+                englishNameTranslation={"English Name Translation"}
+                name={"Arabic title"}
+                numberOfAyahs={10}
+              />
             </div>
           </div>
-        ))}
-        {/* Child element - Button card END */}
+        )}
       </div>
-      {/* Parent - Grid container END */}
       {/* TAB CONTENT END */}
     </div>
   );
