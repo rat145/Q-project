@@ -3,7 +3,6 @@ import Link from "next/link";
 import { auth, provider } from "./config";
 import {
   signInWithPopup,
-  FacebookAuthProvider,
   sendSignInLinkToEmail,
   isSignInWithEmailLink,
   signInWithEmailLink,
@@ -21,23 +20,20 @@ export default function Modal({ toggleModal }) {
     signInWithPopup(auth, provider).then((data) => {
       setName(data.user.displayName);
       setEmail(data.user.email);
+      setIsLoggedIn(true);
       localStorage.setItem("email", data.user.email);
+      if (data.user.displayName) {
+        localStorage.setItem("name", data.user.displayName);
+      }
     });
   };
 
   const logout = () => {
     localStorage.clear();
+    setEmail("");
+    setName("");
+    setIsLoggedIn(false);
     window.location.reload();
-  };
-
-  // Facebook
-  const handleFacebookClick = () => {
-    const this_provider = new FacebookAuthProvider();
-    signInWithPopup(auth, this_provider).then((data) => {
-      setName(data.user.displayName);
-      setEmail(data.user.email);
-      localStorage.setItem("email", data.user.email);
-    });
   };
 
   // Email Only sign in
@@ -70,7 +66,6 @@ export default function Modal({ toggleModal }) {
     }
   };
 
-  //
   useEffect(() => {
     // Check if the user is returning from email link
     if (isSignInWithEmailLink(auth, window.location.href)) {
@@ -82,7 +77,8 @@ export default function Modal({ toggleModal }) {
         );
       }
 
-      signInWithEmailLink(emailForSignIn, window.location.href)
+      // Fixed: Correct parameter order for signInWithEmailLink
+      signInWithEmailLink(auth, emailForSignIn, window.location.href)
         .then((result) => {
           // Clear the email from storage
           window.localStorage.removeItem("emailForSignIn");
@@ -90,18 +86,33 @@ export default function Modal({ toggleModal }) {
           // Set logged in state and save email to localStorage
           setEmail(result.user.email);
           setIsLoggedIn(true);
+          setName(result.user.displayName || "");
           window.localStorage.setItem("email", result.user.email);
+          if (result.user.displayName) {
+            window.localStorage.setItem("name", result.user.displayName);
+          }
+
+          // Clean up the URL by removing the auth parameters
+          const url = new URL(window.location);
+          url.search = "";
+          window.history.replaceState({}, document.title, url.toString());
+
+          // Force component re-render by updating state
+          setMessage(null);
         })
         .catch((error) => {
           console.error("Error signing in with email link", error);
+          setMessage("Error signing in. Please try again.");
         });
-    }
-
-    // Check if the user is already logged in
-    const storedEmail = window.localStorage.getItem("email");
-    if (storedEmail) {
-      setEmail(storedEmail);
-      setIsLoggedIn(true);
+    } else {
+      // Check if the user is already logged in (only if not handling email link)
+      const storedEmail = window.localStorage.getItem("email");
+      const storedName = window.localStorage.getItem("name");
+      if (storedEmail) {
+        setEmail(storedEmail);
+        setName(storedName || "");
+        setIsLoggedIn(true);
+      }
     }
   }, []);
 
@@ -113,7 +124,7 @@ export default function Modal({ toggleModal }) {
           className="place-self-end cursor-pointer"
           onClick={toggleModal}
         />
-        {email ? (
+        {email && isLoggedIn ? (
           <>
             <div className="row1 flex justify-between md:mx-14 mx-8">
               <span className="bottomleft-cap-line relative text-[#3E094B] text-lg font-bold">
@@ -161,7 +172,7 @@ export default function Modal({ toggleModal }) {
                   Continue with
                 </span>
               </div>
-              <ul className="list-none flex flex-row gap-2">
+              <ul className="list-none flex flex-row">
                 <Link
                   href={"#"}
                   onClick={handleGoogleClick}
@@ -169,23 +180,6 @@ export default function Modal({ toggleModal }) {
                 >
                   <li>
                     <img src="google.svg" />
-                  </li>
-                </Link>
-                <Link
-                  href={"#"}
-                  onClick={handleFacebookClick}
-                  className="border-2 py-3 flex-grow flex justify-center items-center rounded"
-                >
-                  <li>
-                    <img src="facebook.svg" />
-                  </li>
-                </Link>
-                <Link
-                  href={"#"}
-                  className="border-2 py-3 flex-grow flex justify-center items-center rounded"
-                >
-                  <li>
-                    <img src="apple.svg" />
                   </li>
                 </Link>
               </ul>
@@ -215,7 +209,7 @@ export default function Modal({ toggleModal }) {
                   Continue
                 </button>
                 <p className="text-[10px] text-slate-500 text-center">
-                  By signing up, I agree to Yaqeen Institute’s&nbsp;
+                  By signing up, I agree to Yaqeen Institute's&nbsp;
                   <Link href={"#"} className="font-semibold cursor-pointer">
                     terms of use
                   </Link>
